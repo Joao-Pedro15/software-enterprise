@@ -41,3 +41,4 @@ export class AppController {
     console.log(files)
     return 'video uploaded'
   }
+}
