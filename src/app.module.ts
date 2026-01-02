@@ -3,11 +3,11 @@ import { PrismaService } from '@src/persistence/prisma/prisma.service';
 import { ContentController } from './http/rest/controller/content.controller';
 import { ContentManagementService } from './core/service/content-management.service';
 import { MidiaPlayerService } from './core/service/midia-player.service';
-import { VideoDAO } from './persistence/dao/video.dao';
+import { ContentRepository } from './persistence/repository/content.repository';
 
 @Module({
   imports: [],
   controllers: [ContentController],
-  providers: [PrismaService, ContentManagementService, MidiaPlayerService, VideoDAO],
+  providers: [PrismaService, ContentManagementService, MidiaPlayerService, ContentRepository],
 })
 export class AppModule { }
