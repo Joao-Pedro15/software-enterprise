@@ -37,7 +37,7 @@ export class MovieEntity extends BaseEntity {
     })
   }
 
-  serialize(): Record<string, unknown> {
+  serialize() {
     return {
       id: this.id,
       video: this.video.serialize(),
