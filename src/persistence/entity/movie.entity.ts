@@ -2,7 +2,7 @@ import { Entity, JoinColumn, OneToOne } from 'typeorm';
 import { Content } from './content.entity';
 import { Video } from './video.entity';
 import { DefaultEntity } from '@src/infra/module/typeorm/entity/default.entity';
-import { Thumbnail } from '@src/infra/module/typeorm/entity/thumbnail.entity';
+import { Thumbnail } from '@src/persistence/entity/thumbnail.entity';
 
 @Entity({ name: 'Movie' })
 export class Movie extends DefaultEntity<Movie> {
