@@ -1,4 +1,6 @@
-import config from './jest.shared';
+import shared = require('./jest.shared');
+
+const config = shared.default;
 
 export default {
   ...config,

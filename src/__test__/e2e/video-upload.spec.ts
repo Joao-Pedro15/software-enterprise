@@ -6,13 +6,14 @@ import { MovieRepository } from '@src/persistence/repository/movie.repository';
 import { VideoRepository } from '@src/persistence/repository/video.repository';
 import fs from 'fs';
 import request from 'supertest';
+import nock from 'nock';
 
 describe('VideoUploadController (e2e)', () => {
   let module: TestingModule;
   let app: INestApplication;
   let videoRepository: VideoRepository;
-  let contentRepository: ContentRepository
-  let movieRepository: MovieRepository
+  let contentRepository: ContentRepository;
+  let movieRepository: MovieRepository;
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
@@ -23,9 +24,8 @@ describe('VideoUploadController (e2e)', () => {
     await app.init();
 
     videoRepository = module.get<VideoRepository>(VideoRepository);
-    contentRepository = module.get<ContentRepository>(ContentRepository)
-    movieRepository = module.get<MovieRepository>(MovieRepository)
-
+    contentRepository = module.get<ContentRepository>(ContentRepository);
+    movieRepository = module.get<MovieRepository>(MovieRepository);
   });
 
   beforeEach(async () => {
@@ -38,6 +38,7 @@ describe('VideoUploadController (e2e)', () => {
     await videoRepository.deleteAll();
     await movieRepository.deleteAll();
     await contentRepository.deleteAll();
+    nock.cleanAll();
   });
 
   afterAll(async () => {
@@ -47,6 +48,47 @@ describe('VideoUploadController (e2e)', () => {
 
   describe('/video (POST)', () => {
     it('uploads a video', async () => {
+      //nock has support to native fetch only in 14.0.0-beta.6
+      //https://github.com/nock/nock/issues/2397
+      nock('https://api.themoviedb.org/3', {
+        encodedQueryParams: true,
+        reqheaders: {
+          Authorization: (): boolean => true,
+        },
+      })
+        .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
+        .get(`/search/keyword`)
+        .query({
+          query: 'Test Video',
+          page: '1',
+        })
+        .reply(200, {
+          results: [
+            {
+              id: '1',
+            },
+          ],
+        });
+
+      nock('https://api.themoviedb.org/3', {
+        encodedQueryParams: true,
+        reqheaders: {
+          Authorization: (): boolean => true,
+        },
+      })
+        .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
+        .get(`discover/movie`)
+        .query({
+          with_keywords: '1',
+        })
+        .reply(200, {
+          results: [
+            {
+              vote_average: 8.5,
+            },
+          ],
+        });
+
       const video = {
         title: 'Test Video',
         description: 'This is a test video',
