@@ -4,5 +4,5 @@ const config = shared.default;
 
 export default {
   ...config,
-  testMatch: ['<rootDir>/src/**/__test__/e2e/*.spec.ts'],
+  testMatch: ['<rootDir>/src/**/__test__/e2e/**/*.spec.ts'],
 };

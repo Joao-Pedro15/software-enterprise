@@ -3,7 +3,7 @@ import { PersistenceModule } from '@contentModule/persistence/persistence.module
 import { DataSourceOptions } from 'typeorm';
 import { createPostgresDatabase } from 'typeorm-extension';
 import { TypeOrmMigrationService } from '@contentModule/infra/module/typeorm/service/typeorm-migration.service';
-import { ConfigService } from '@sharedModule/config/service/config.service';
+import { ConfigService } from '@sharedModules/config/service/config.service';
 
 const createDatabaseModule = async () => {
   return await NestFactory.createApplicationContext(
