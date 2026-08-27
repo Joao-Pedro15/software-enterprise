@@ -24,7 +24,7 @@ export class VideoUploadController {
   constructor(
     private readonly contentManagementService: ContentManagementService,
     private readonly mediaPlayerService: MediaPlayerService,
-  ) { }
+  ) {}
 
   @Post('video')
   @HttpCode(HttpStatus.CREATED)
@@ -113,7 +113,7 @@ export class VideoUploadController {
       updatedAt: createdMovie.updatedAt,
       duration: createdMovie.movie.video.duration,
       sizeInKb: createdMovie.movie.video.sizeInKb,
-      thumbnailUrl: createdMovie.movie.thumbnail.url
+      thumbnailUrl: createdMovie.movie.thumbnail.url,
     };
   }
 }

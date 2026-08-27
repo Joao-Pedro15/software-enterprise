@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserModel } from '@identityModule/core/model/user.model';
 import { UserRepository } from '@identityModule/persistence/repository/user.repository';
-import bcrypt from 'bcrypt';
+import { hash } from 'bcrypt';
 import { DomainException } from '@sharedLibs/core/exception/domain.exception';
 
 export interface CreateUserDto {
@@ -16,14 +16,14 @@ export const PASSWORD_HASH_SALT = 10;
 
 @Injectable()
 export class UserManagementService {
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userRepository: UserRepository) {}
   async create(user: CreateUserDto) {
     if (!this.validateEmail(user.email)) {
       throw new DomainException(`Invalid email: ${user.email}`);
     }
     const newUser = UserModel.create({
       ...user,
-      password: await bcrypt.hash(user.password, PASSWORD_HASH_SALT),
+      password: await hash(user.password, PASSWORD_HASH_SALT),
     });
     await this.userRepository.save(newUser);
     return newUser;

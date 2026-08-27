@@ -1,41 +1,47 @@
-import { Expose } from "class-transformer";
-import { IsDate, IsNegative, IsNumber, IsObject, IsOptional, IsString, IsUUID } from "class-validator";
+import { Expose } from 'class-transformer';
+import {
+  IsDate,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 export class CreateVideoResponseDto {
   @IsUUID(4)
   @Expose()
-  id: string
+  id: string;
 
   @IsString()
   @Expose()
-  title: string
+  title: string;
 
   @IsString()
   @Expose()
-  description: string
+  description: string;
 
   @IsString()
   @Expose()
-  url: string
+  url: string;
 
   @IsDate()
   @Expose()
-  createdAt: Date
+  createdAt: Date;
 
   @IsDate()
   @Expose()
-  updatedAt: Date
+  updatedAt: Date;
 
   @IsString()
   @Expose()
   @IsOptional()
-  thumbnailUrl?: string
+  thumbnailUrl?: string;
 
   @IsNumber()
   @Expose()
-  sizeInKb: number
+  sizeInKb: number;
 
   @IsNumber()
   @Expose()
-  duration: number
+  duration: number;
 }

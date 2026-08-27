@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserUnauthorizedException } from '@identityModule/core/exception/user-unauthorized.exception';
 import { UserRepository } from '@identityModule/persistence/repository/user.repository';
-import bcrypt from 'bcrypt';
+import { compare } from 'bcrypt';
 
 // TODO: move this to a .env file and config
 export const jwtConstants = {
@@ -14,7 +14,7 @@ export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
-  ) { }
+  ) {}
 
   async signIn(
     email: string,
@@ -38,6 +38,6 @@ export class AuthService {
     password: string,
     actualPassword: string,
   ): Promise<boolean> {
-    return bcrypt.compare(password, actualPassword);
+    return compare(password, actualPassword);
   }
 }

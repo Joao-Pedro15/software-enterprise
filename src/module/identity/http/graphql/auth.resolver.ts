@@ -6,7 +6,7 @@ import { SignInInput } from './type/sign-in-input.type';
 
 @Resolver()
 export class AuthResolver {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
   @Mutation(() => AuthToken)
   async signIn(
     @Args('SignInInput') signInInput: SignInInput,

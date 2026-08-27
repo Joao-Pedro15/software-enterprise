@@ -10,7 +10,7 @@ export class ExternalMovieClient {
   constructor(
     private readonly configService: ConfigService,
     private readonly httpClient: HttpClient,
-  ) { }
+  ) {}
 
   async getRating(title: string): Promise<number | undefined> {
     const keywordId = await this.stringToKeywordId(title);

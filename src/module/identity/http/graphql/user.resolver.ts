@@ -10,7 +10,7 @@ import { User } from './type/user.type';
 
 @Resolver()
 export class UserResolver {
-  constructor(private readonly userManagementService: UserManagementService) { }
+  constructor(private readonly userManagementService: UserManagementService) {}
   @Mutation(() => User)
   async createUser(
     @Args('CreateUserInput') createUserInput: CreateUserInput,

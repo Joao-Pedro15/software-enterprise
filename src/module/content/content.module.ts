@@ -1,15 +1,14 @@
-import { Module } from "@nestjs/common";
-import { PersistenceModule } from "./persistence/persistence.module";
-import { ConfigModule } from "../shared/module/config/config.module";
-import { VideoUploadController } from "./http/rest/controller/video-upload.controller";
-import { MediaPlayerController } from "./http/rest/controller/media-player.controller";
-import { ContentManagementService } from "./core/service/content-management.service";
-import { MediaPlayerService } from "./core/service/media-player.service";
-import { ContentRepository } from "./persistence/repository/content.repository";
-import { VideoRepository } from "./persistence/repository/video.repository";
-import { ExternalMovieClient } from "./http/rest/client/external-movie-rating/external-movie-rating.client";
-import { HttpClient } from "./infra/http/client/http.client";
-
+import { Module } from '@nestjs/common';
+import { PersistenceModule } from './persistence/persistence.module';
+import { ConfigModule } from '../shared/module/config/config.module';
+import { VideoUploadController } from './http/rest/controller/video-upload.controller';
+import { MediaPlayerController } from './http/rest/controller/media-player.controller';
+import { ContentManagementService } from './core/service/content-management.service';
+import { MediaPlayerService } from './core/service/media-player.service';
+import { ContentRepository } from './persistence/repository/content.repository';
+import { VideoRepository } from './persistence/repository/video.repository';
+import { ExternalMovieClient } from './http/rest/client/external-movie-rating/external-movie-rating.client';
+import { HttpClient } from './infra/http/client/http.client';
 
 @Module({
   imports: [PersistenceModule.forRoot(), ConfigModule.forRoot()],
@@ -20,7 +19,7 @@ import { HttpClient } from "./infra/http/client/http.client";
     ContentRepository,
     VideoRepository,
     ExternalMovieClient,
-    HttpClient
+    HttpClient,
   ],
 })
-export class ContentModule { }
+export class ContentModule {}

@@ -26,4 +26,4 @@ import { PersistenceModule } from '@sharedModules/persistence/prisma/persistence
     UserRepository,
   ],
 })
-export class IdentityModule { }
+export class IdentityModule {}

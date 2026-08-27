@@ -16,7 +16,7 @@ import path from 'path';
 
 @Controller('stream')
 export class MediaPlayerController {
-  constructor(private readonly mediaPlayerService: MediaPlayerService) { }
+  constructor(private readonly mediaPlayerService: MediaPlayerService) {}
 
   @Get(':videoId')
   @Header('Content-Type', 'video/mp4')

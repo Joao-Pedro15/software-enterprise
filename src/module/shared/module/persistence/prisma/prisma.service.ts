@@ -1,4 +1,3 @@
-
 import {
   Injectable,
   Logger,
@@ -12,7 +11,8 @@ import { ConfigService } from '@sharedModules/config/service/config.service';
 @Injectable()
 export class PrismaService
   extends PrismaClient
-  implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
+  implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown
+{
   private logger = new Logger(PrismaService.name);
 
   constructor(private configService: ConfigService) {

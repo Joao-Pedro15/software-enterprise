@@ -1,7 +1,7 @@
 import { Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { Content } from './content.entity';
 import { Episode } from './episode.entity';
-import { Thumbnail } from '@contentModule/persistence/entity/thumbnail.entity'
+import { Thumbnail } from '@contentModule/persistence/entity/thumbnail.entity';
 import { DefaultEntity } from '@contentModule/infra/module/typeorm/entity/default.entity';
 
 @Entity({ name: 'TvShow' })
